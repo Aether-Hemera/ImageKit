@@ -89,6 +89,7 @@ namespace ImageKit
             var b = new Bitmap(200, 200);
             using (var g = Graphics.FromImage(b))
             {
+                g.Clear(Color.Black);
                 _eye.Draw(g);
             }
             pictureBox1.Image = b;
@@ -96,14 +97,22 @@ namespace ImageKit
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            _eye.Tension = trackBar1.Value/10f;
+            // _fourPointOval.Tension = trackBar1.Value/10f;
             DrawEye();
         }
 
         private void cmdAnimate_Click(object sender, EventArgs e)
         {
-            _eye.Tension = 0;
-            _eye.Tension.Animate(2, 10000);
+            // _fourPointOval.Tension = 0;
+            // _fourPointOval.Tension.Animate(2, 10000);
+            Animator.Instance.Tick = 0;
+            _eye.SwingPupil(100);
+        }
+
+        private void tbTick_Scroll(object sender, EventArgs e)
+        {
+            Animator.Instance.Tick = tbTick.Value;
+            DrawEye();
         }
     }
 }

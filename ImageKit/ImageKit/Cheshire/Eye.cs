@@ -1,45 +1,42 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
+﻿using System.Drawing;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ImageKit.Cheshire
 {
     class Eye
     {
-        public  AnimatedPoint Center = new AnimatedPoint(50,50);
-
-        public Pen BorderPen;
-        public Brush Brush = Brushes.Gold;
-        public AnimatedFloat Tension = 1;
+        private FourPointOval Cornea;
+        private FourPointOval Pupil;
+        private AnimatedPoint Center = new AnimatedPoint(50, 50);
 
         public void Draw(Graphics g)
         {
-            g.FillClosedCurve(Brush, ControlPoints.ToArray(), FillMode.Alternate, Tension);
+            Cornea.Draw(g);
+            Pupil.Draw(g);
         }
 
         public Eye()
         {
-            PointLeft = new AnimatedPoint(-20, 5);
-            PointTop = new AnimatedPoint(0, -20);
-            PointRight = new AnimatedPoint(20, -5);
-            PointBottom = new AnimatedPoint(0, 20);
-        }
+            Cornea = new FourPointOval(Center) {
+                PointLeft = new AnimatedPoint(-20, 5),
+                PointTop = new AnimatedPoint(0, -20),
+                PointRight = new AnimatedPoint(20, -5),
+                PointBottom = new AnimatedPoint(0, 20)
+                };
 
-        private IEnumerable<PointF> ControlPoints
-        {
-            get
+            Pupil = new FourPointOval(Center)
             {
-                yield return Center + PointLeft;
-                yield return Center + PointTop;
-                yield return Center + PointRight;
-                yield return Center + PointBottom;
-            }
+                PointLeft = new AnimatedPoint(-5, 0),
+                PointTop = new AnimatedPoint(0, -5),
+                PointRight = new AnimatedPoint(5, 0),
+                PointBottom = new AnimatedPoint(0, 5),
+                Brush = Brushes.Black
+            };
         }
 
-        public AnimatedPoint PointLeft;
-        public AnimatedPoint PointTop;
-        public AnimatedPoint PointRight;
-        public AnimatedPoint PointBottom;
+        public void SwingPupil(int iDuration)
+        {
+            Pupil.Center.Animate(-15, 0, 15, 0, iDuration);
+        }
     }
 }

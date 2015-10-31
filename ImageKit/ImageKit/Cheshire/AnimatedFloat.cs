@@ -30,6 +30,7 @@
                 Update();
                 return _currentValue;
             }
+            set { _currentValue = value; }
         }
 
         public void Update()

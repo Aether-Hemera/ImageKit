@@ -54,6 +54,7 @@
     <Compile Include="Cheshire\AnimatedPoint.cs" />
     <Compile Include="Cheshire\Animator.cs" />
     <Compile Include="Cheshire\Eye.cs" />
+    <Compile Include="Cheshire\FourPointOval.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -19,7 +19,12 @@ namespace ImageKit.Cheshire
                     _sw = Stopwatch.StartNew();
                 return (int)_sw.ElapsedMilliseconds;
             }
-            set { _tick = value; }
+            set
+            {
+                _tick = value;
+                _autoTick = false;
+                _sw = null;
+            }
         }
 
         Animator()

@@ -38,8 +38,10 @@ namespace ImageKit
             this.buttonShapeTests = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.cmdAnimate = new System.Windows.Forms.Button();
+            this.tbTick = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbTick)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -57,7 +59,7 @@ namespace ImageKit
             // 
             this.pictureBox1.Location = new System.Drawing.Point(221, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(723, 481);
+            this.pictureBox1.Size = new System.Drawing.Size(523, 311);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
@@ -105,11 +107,22 @@ namespace ImageKit
             this.cmdAnimate.UseVisualStyleBackColor = true;
             this.cmdAnimate.Click += new System.EventHandler(this.cmdAnimate_Click);
             // 
+            // tbTick
+            // 
+            this.tbTick.Location = new System.Drawing.Point(12, 463);
+            this.tbTick.Maximum = 100;
+            this.tbTick.Name = "tbTick";
+            this.tbTick.Size = new System.Drawing.Size(195, 56);
+            this.tbTick.TabIndex = 6;
+            this.tbTick.TickFrequency = 10;
+            this.tbTick.Scroll += new System.EventHandler(this.tbTick_Scroll);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1095, 531);
+            this.Controls.Add(this.tbTick);
             this.Controls.Add(this.cmdAnimate);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.buttonShapeTests);
@@ -121,6 +134,7 @@ namespace ImageKit
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbTick)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -134,6 +148,7 @@ namespace ImageKit
         private Button buttonShapeTests;
         private TrackBar trackBar1;
         private Button cmdAnimate;
+        private TrackBar tbTick;
     }
 }
 
