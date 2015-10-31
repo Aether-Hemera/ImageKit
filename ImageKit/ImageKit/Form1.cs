@@ -32,7 +32,7 @@ namespace ImageKit
         }
 
         readonly string _gifFile =
-                (@"gif.gif");
+                (@"cropped.gif");
 
         readonly string _imgFolder =
                 (@"..\..\..\..\Animazioni\");
