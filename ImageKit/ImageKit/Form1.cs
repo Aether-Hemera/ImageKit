@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ImageKit.AreasRemap;
+using ImageKit.Cheshire;
 
 namespace ImageKit
 {
@@ -18,17 +13,6 @@ namespace ImageKit
         public Form1()
         {
             InitializeComponent();
-        }
-
-        void CreateBitmap()
-        {
-            var flag = new Bitmap(10, 10);
-            for (var x = 0; x < flag.Height; ++x)
-                for (var y = 0; y < flag.Width; ++y)
-                    flag.SetPixel(x, y, Color.White);
-            for (var x = 0; x < flag.Height; ++x)
-                flag.SetPixel(x, x, Color.Red);
-            pictureBox1.Image = flag;
         }
 
         readonly string _gifFile =
@@ -91,6 +75,35 @@ namespace ImageKit
         private string FrameName(int i)
         {
             return string.Format(@"{0}{1}.png", _imgFolder, i);
+        }
+
+        private readonly Eye _eye = new Eye();
+
+        private void buttonShapeTests_Click(object sender, EventArgs e)
+        {
+            DrawEye();
+        }
+
+        private void DrawEye()
+        {
+            var b = new Bitmap(200, 200);
+            using (var g = Graphics.FromImage(b))
+            {
+                _eye.Draw(g);
+            }
+            pictureBox1.Image = b;
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            _eye.Tension = trackBar1.Value/10f;
+            DrawEye();
+        }
+
+        private void cmdAnimate_Click(object sender, EventArgs e)
+        {
+            _eye.Tension = 0;
+            _eye.Tension.Animate(2, 10000);
         }
     }
 }
