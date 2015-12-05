@@ -17,6 +17,7 @@ namespace ImageKit.AreasRemap
                 g.DrawImage(srcBitmap, 0, 0, section, GraphicsUnit.Pixel);
             }
             // Return the bitmap
+            bmp.RotateFlip(RotateFlipType.Rotate180FlipNone);
             return bmp;
         }
 
@@ -24,6 +25,8 @@ namespace ImageKit.AreasRemap
         {
             // get region
             var region = GetRegion(gifImg, Origin);
+
+
             
             // write to destination
            destBitmap.DrawImage(region, Destination);
@@ -43,6 +46,18 @@ namespace ImageKit.AreasRemap
         public AreaMap MoveY(int i)
         {
             Destination = new Point(Origin.X, Origin.Y + i);
+            return this;
+        }
+
+        public AreaMap MoveXY(int x, int y)
+        {
+            Destination = new Point(Origin.X + x, Origin.Y + y);
+            return this;
+        }
+
+        public AreaMap ToXY(int x, int y)
+        {
+            Destination = new Point(x, y);
             return this;
         }
 

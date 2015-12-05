@@ -5,9 +5,9 @@ namespace ImageKit.Cheshire
 {
     class Eye
     {
-        private FourPointOval Cornea;
-        private FourPointOval Pupil;
-        private AnimatedPoint Center = new AnimatedPoint(50, 50);
+        internal FourPointOval Cornea;
+        internal FourPointOval Pupil;
+        internal AnimatedPoint Center = new AnimatedPoint(50, 50);
 
         public void Draw(Graphics g)
         {
@@ -23,6 +23,8 @@ namespace ImageKit.Cheshire
                 PointRight = new AnimatedPoint(20, -5),
                 PointBottom = new AnimatedPoint(0, 20)
                 };
+
+            Cornea.Tension.Animate(2, 10000);
 
             Pupil = new FourPointOval(Center)
             {
